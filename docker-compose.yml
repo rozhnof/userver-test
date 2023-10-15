@@ -1,0 +1,26 @@
+version: "2.3"
+
+services:
+  template-postgres:
+    restart: always
+    container_name: template-postgres
+    image: postgres:12
+    environment:
+      - POSTGRES_DB=template-service_db_1
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+    volumes:
+      - ./postgresql/schemas:/docker-entrypoint-initdb.d
+      - /var/services/template/db/pgdata:/var/lib/postgresql/data
+    ports:
+      - 37011:5432
+
+  template-service-container:
+    image: registry.okibiteam.ru/backend/productionflowservice
+    privileged: true
+    restart: always
+    ports:
+      - 37010:8081
+    depends_on:
+      - template-postgres
+      

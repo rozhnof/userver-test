@@ -1,0 +1,4 @@
+yandex-taxi-testsuite[postgresql-binary] >= 0.1.17
+websockets >= 11.0.3
+grpcio
+grpcio-tools

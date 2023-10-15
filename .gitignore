@@ -1,0 +1,60 @@
+include proto-common/.gitignore
+
+HELP.md
+target/*
+third_party/
+proto-common/target
+!target/production_flow_service-0.0.1-SNAPSHOT.jar
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeanss
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### VS Code ###
+# .vscode/
+
+#Other
+/scripts/docker_clean_all.sh
+
+.fake
+
+__pycache__
+build*
+compile_commands.json
+.cache/
+.ccache/
+.idea/
+.vscode/
+.pgdata/
+.cores/
+cmake-build-*
+Testing/
+configs/static_config.yaml
+docs/
+!scripts/**
+
+**.DS_Store

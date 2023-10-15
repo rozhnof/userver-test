@@ -1,0 +1,12 @@
+worker-threads: 4
+worker-fs-threads: 2
+worker-grpc-threads: 2
+
+is_testing: false
+
+testsuite-enabled: false
+
+server-port: 8080
+server-grpc-port: 8081
+
+dbconnection-postgres: 'postgresql://user:password@okibiteam.ru:37011/template-service_db_1'

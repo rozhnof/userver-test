@@ -1,0 +1,3 @@
+add_subdirectory(DomainLayer)
+add_subdirectory(InfrastructureLayer)
+add_subdirectory(ApplicationLayer)

@@ -1,0 +1,12 @@
+worker-threads: 4
+worker-fs-threads: 2
+worker-grpc-threads: 2
+
+is_testing: false
+
+testsuite-enabled: false
+
+server-port: 8080
+server-grpc-port: 8081
+
+dbconnection-postgres: 'postgresql://bestuser:bestuser@172.17.0.1:20004/production_flow_service'
