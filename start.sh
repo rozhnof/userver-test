@@ -1,3 +1,3 @@
 #!/bin/bash
 
-./build_release/template-service --config ./configs/static_config.yaml
+./build_debug/template-service --config ./configs/static_config.yaml

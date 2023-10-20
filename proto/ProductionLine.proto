@@ -1,0 +1,57 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+
+
+package handlers.api;
+
+service ProductionOrderService {
+
+    rpc LoadOrder(LoadOrderRequest)
+        returns (LoadOrderResponse) {}
+    
+    rpc GetProductionCalendar(GetProductionCalendarRequest) 
+        returns (GetProductionCalendarResponse) {}
+}
+
+message Item {
+    int64 id = 1;
+    string name = 2;
+    int64 time_cost = 3; 
+}
+
+message OrderItem {
+    Item item = 1;
+    int64 count = 2;
+}
+
+message ProductionLine {
+    int64 id = 1;
+    int64 money_cost = 2; 
+}
+
+message ProductionDuration {
+    int64 production_line_id = 1;
+    int64 item_id = 2;
+    int64 order_id = 3;
+    google.protobuf.Timestamp from = 4;
+    google.protobuf.Timestamp to = 5;
+}
+
+message GetProductionCalendarRequest {
+    int64 production_line_id = 1;
+}
+
+message GetProductionCalendarResponse {
+    repeated ProductionDuration calendar_list = 1;
+}
+
+message LoadOrderRequest {
+    repeated OrderItem order_item_list = 1;
+}
+
+message LoadOrderResponse {
+    int64 order_id = 1;
+    string total_cost = 2;
+}
+

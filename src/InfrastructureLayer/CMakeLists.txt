@@ -11,6 +11,12 @@ file(GLOB_RECURSE HEADERS
 
 add_library(${PROJECT_NAME} STATIC ${SOURCES} ${HEADERS})
 
+target_link_libraries(${PROJECT_NAME} PUBLIC 
+    DomainLayer
+    userver-postgresql
+    userver-core
+    template-service_proto
+)
 
 target_include_directories(${PROJECT_NAME}
     PRIVATE
@@ -18,13 +24,6 @@ target_include_directories(${PROJECT_NAME}
     PUBLIC
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
         $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
-)
-
-target_link_libraries(${PROJECT_NAME} PUBLIC 
-    DomainLayer
-    userver-postgresql
-    userver-core
-    template-service_proto
 )
 
 set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 20)

@@ -9,4 +9,6 @@ testsuite-enabled: false
 server-port: 8080
 server-grpc-port: 8081
 
-dbconnection-postgres: 'postgresql://user:password@okibiteam.ru:37011/template-service_db_1'
+order-endpoint: '[::1]:8081'
+
+dbconnection-postgres: 'postgresql://user:password@172.17.0.1:54321/test_db'

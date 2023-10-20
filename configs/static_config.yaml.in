@@ -43,6 +43,11 @@ components_manager:
 
         grpc-server:
             port: 8081
+            service-defaults:
+                middlewares: []
+                task-processor: main-task-processor
+
+        handler-order:
 
         server:
             listener:                 # configuring the main listening socket...

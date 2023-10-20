@@ -1,6 +1,6 @@
 # yaml
 
-config_vars: /home/sanddony/userver-template-ddd/configs/config_vars.yaml
+config_vars: /home/rozhnof/userver-template-ddd/configs/config_vars.yaml
 
 components_manager:
     coro_pool:
@@ -43,6 +43,11 @@ components_manager:
 
         grpc-server:
             port: 8081
+            service-defaults:
+                middlewares: []
+                task-processor: main-task-processor
+
+        handler-order:
 
         server:
             listener:                 # configuring the main listening socket...
@@ -62,7 +67,7 @@ components_manager:
         dynamic-config:                      # Dynamic config storage options, do nothing
             fs-cache-path: ''
         dynamic-config-fallbacks:            # Load options from file and push them into the dynamic config storage.
-            fallback-path: /home/sanddony/userver-template-ddd/configs/dynamic_config_fallback.json
+            fallback-path: /home/rozhnof/userver-template-ddd/configs/dynamic_config_fallback.json
         testsuite-support: {}
 
         tests-control:
