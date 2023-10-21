@@ -15,7 +15,7 @@ PgService::PgService(
   setOrderId();
 }
 
-bool PgService::LoadOrder(Order &order) {
+bool PgService::loadOrder(Order &order) {
   userver::storages::postgres::Transaction transaction = pg_cluster_->Begin(
       userver::storages::postgres::ClusterHostType::kMaster, {});
 
@@ -26,7 +26,7 @@ bool PgService::LoadOrder(Order &order) {
         Order::id, order.start_date, order.end_date, order.total_cost);
 
     loadItems(order, transaction);
-    LoadOrderItems(order, transaction);
+    loadOrderItems(order, transaction);
 
     transaction.Commit();
   } catch (...) {
@@ -46,7 +46,7 @@ void PgService::loadItems(
   }
 }
 
-void PgService::LoadOrderItems(
+void PgService::loadOrderItems(
     Order &order, userver::storages::postgres::Transaction &transaction) {
   for (const auto &it : order.order_item_list) {
     transaction.Execute(R"(

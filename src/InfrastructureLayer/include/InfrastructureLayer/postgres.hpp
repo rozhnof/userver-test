@@ -20,10 +20,10 @@ class PgService {
 public:
   PgService(const userver::components::ComponentContext &component_context);
 
-  bool LoadOrder(Order &order);
+  bool loadOrder(Order &order);
   void loadItems(Order &order,
                  userver::storages::postgres::Transaction &transaction);
-  void LoadOrderItems(Order &order,
+  void loadOrderItems(Order &order,
                       userver::storages::postgres::Transaction &transaction);
   void setOrderId();
   void setProductionLines();

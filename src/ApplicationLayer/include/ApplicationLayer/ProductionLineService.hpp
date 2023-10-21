@@ -42,7 +42,7 @@ private:
   google::protobuf::Timestamp *ConvertTimePointToTimestamp(
       const std::chrono::system_clock::time_point &time_point);
 
-  std::vector<OrderItem> getOrderList(handlers::api::LoadOrderRequest &request);
+  std::vector<OrderItem> GetOrderList(handlers::api::LoadOrderRequest &request);
 };
 
 } // namespace pg_grpc_service_template

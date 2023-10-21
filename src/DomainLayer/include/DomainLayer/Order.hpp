@@ -25,8 +25,6 @@ public:
 
   static std::multiset<ProductionLine, ProductionLineCompareByDate>
       production_line_list;
-
-  void updateOptimalProductionLine();
 };
 
 } // namespace pg_grpc_service_template

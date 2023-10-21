@@ -13,11 +13,11 @@ void ProductionLineService::LoadOrder(
     handlers::api::ProductionOrderServiceBase::LoadOrderCall &call,
     handlers::api::LoadOrderRequest &&request) {
 
-  std::vector<OrderItem> order_item_list = getOrderList(request);
+  std::vector<OrderItem> order_item_list = GetOrderList(request);
   handlers::api::LoadOrderResponse response;
 
   Order order(order_item_list);
-  if (postgres_.LoadOrder(order)) {
+  if (postgres_.loadOrder(order)) {
     response.set_order_id(order.id);
     response.set_total_cost(std::move(std::to_string(order.total_cost)));
     ++Order::id;
@@ -64,7 +64,7 @@ google::protobuf::Timestamp *ProductionLineService::ConvertTimePointToTimestamp(
 }
 
 std::vector<OrderItem>
-ProductionLineService::getOrderList(handlers::api::LoadOrderRequest &request) {
+ProductionLineService::GetOrderList(handlers::api::LoadOrderRequest &request) {
   std::vector<OrderItem> order_item_list;
   auto order_list_proto = request.order_item_list();
 
