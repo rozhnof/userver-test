@@ -14,35 +14,26 @@
 
 #include "DomainLayer/DTO.hpp"
 #include "DomainLayer/Order.hpp"
-#include "InfrastructureLayer/postgres.hpp"
-#include <google/protobuf/timestamp.pb.h>
+#include "InfrastructureLayer/PgService.hpp"
 
-namespace pg_grpc_service_template {
+namespace application_layer {
 
-class ProductionLineService final
-    : public handlers::api::ProductionOrderServiceBase::Component {
+class ProductionLineService final: public handlers::api::ProductionOrderServiceBase::Component {
 public:
-  static constexpr std::string_view kName = "handler-order";
+  static constexpr std::string_view kName = "handler-production-line";
 
-  ProductionLineService(
-      const userver::components::ComponentConfig &config,
-      const userver::components::ComponentContext &component_context);
+  ProductionLineService(const userver::components::ComponentConfig &config,
+                        const userver::components::ComponentContext &component_context);
 
   void LoadOrder(handlers::api::ProductionOrderServiceBase::LoadOrderCall &call,
                  handlers::api::LoadOrderRequest &&request) override;
 
-  void GetProductionCalendar(
-      handlers::api::ProductionOrderServiceBase::GetProductionCalendarCall
-          &call,
+  void GetProductionCalendar(handlers::api::ProductionOrderServiceBase::GetProductionCalendarCall&call,
       handlers::api::GetProductionCalendarRequest &&request) override;
 
 private:
-  PgService postgres_;
-
-  google::protobuf::Timestamp *ConvertTimePointToTimestamp(
-      const std::chrono::system_clock::time_point &time_point);
-
-  std::vector<OrderItem> GetOrderList(handlers::api::LoadOrderRequest &request);
+  infrastructure_layer::PgService postgres_;
+  std::vector<dto::OrderItem> GetOrderItemList(handlers::api::LoadOrderRequest &request);
 };
 
-} // namespace pg_grpc_service_template
+} // namespace application_layer

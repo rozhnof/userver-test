@@ -5,8 +5,9 @@
 #include <stdint.h>
 #include <string>
 #include <vector>
+#include <set>
 
-namespace pg_grpc_service_template {
+namespace dto {
 
 struct Item {
   int64_t id;
@@ -36,4 +37,12 @@ struct ProductionDuration {
   std::chrono::system_clock::time_point to;
 };
 
-} // namespace pg_grpc_service_template
+struct ProductionLineComparatorByDate {
+  bool operator()(const dto::ProductionLine &a, const dto::ProductionLine &b) const {
+    return a.end_date < b.end_date;
+  }
+};
+
+using ProductionLineSet = std::multiset<dto::ProductionLine, ProductionLineComparatorByDate>;
+
+} // namespace dto

@@ -23,8 +23,8 @@ int main(int argc, char *argv[]) {
           .Append<userver::components::HttpClient>()
           .Append<userver::clients::dns::Component>()
           .Append<userver::server::handlers::TestsControl>()
-          .Append<pg_grpc_service_template::ProductionLineService>(
-              "handler-order")
+          .Append<application_layer::ProductionLineService>(
+            "handler-production-line")
           .Append<userver::components::Postgres>("postgres-db-1");
 
   return userver::utils::DaemonMain(argc, argv, component_list);

@@ -14,23 +14,21 @@
 #include <userver/storages/postgres/exceptions.hpp>
 #include <userver/storages/postgres/transaction.hpp>
 
-namespace pg_grpc_service_template {
+namespace infrastructure_layer {
 
 class PgService {
 public:
   PgService(const userver::components::ComponentContext &component_context);
 
-  bool loadOrder(Order &order);
-  void loadItems(Order &order,
-                 userver::storages::postgres::Transaction &transaction);
-  void loadOrderItems(Order &order,
-                      userver::storages::postgres::Transaction &transaction);
-  void setOrderId();
-  void setProductionLines();
-  std::vector<ProductionDuration> getProductionCalendar(int64_t pl_id);
+  void loadOrder(domain_layer::Order &order, std::vector<dto::OrderItem>& order_item_list);
+  void loadItems(std::vector<dto::OrderItem> &order_item_list);
+  void loadOrderItems(int64_t order_id, std::vector<dto::OrderItem>& order_item_list, userver::storages::postgres::Transaction &transaction);
+  int64_t getOrderId();
+  dto::ProductionLineSet getProductionLineList();
+  std::vector<dto::ProductionDuration> getProductionCalendar(int64_t pl_id);
 
 private:
   userver::storages::postgres::ClusterPtr pg_cluster_;
 };
 
-} // namespace pg_grpc_service_template
+} // namespace infrastructure_layer

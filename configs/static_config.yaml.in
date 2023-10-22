@@ -47,7 +47,7 @@ components_manager:
                 middlewares: []
                 task-processor: main-task-processor
 
-        handler-order:
+        handler-production-line:
 
         server:
             listener:                 # configuring the main listening socket...
